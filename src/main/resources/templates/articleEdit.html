@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier l'article</title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/formulaire.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<header th:replace="~{fragment/nav}"></header>
+<body>
+
+<form th:action="@{/edit/article/{id}(id=${article.noArticle})}" method="post" role="form" th:object="${article}">
+    <h1>Modifier l'article</h1>
+    <input type="hidden" class="textbtn" name="_method" value="put">
+    <input type="hidden" class="textbtn"  name="categoryId" th:value="${article.noCategorie}">
+    <label for="nomArticle">Nom de l'article :</label><br>
+    <input type="text" class="textbtn"  id="nomArticle" name="nomArticle" th:value="${article.nomArticle}"><br>
+    <label for="description">Description :</label><br>
+    <textarea id="description" name="description" rows="4" cols="50" class="txtb" th:text="${article.description}"></textarea><br>
+    <label for="dateDebutEncheres">Date de début d'enchères :</label><br>
+    <input type="text" id="dateDebutEncheres" class="textbtn"  name="dateDebutEncheres" th:value="${article.dateDebutEncheres}"><br>
+    <label for="dateFinEncheres">Date de fin d'enchères :</label><br>
+    <input type="text" class="textbtn" id="dateFinEncheres" name="dateFinEncheres" th:value="${article.dateFinEncheres}"><br>
+    <label for="prixInitial">Prix initial :</label><br>
+    <input type="number" id="prixInitial" class="textbtn"  name="prixInitial" th:value="${article.prixInitial}"><br>
+    <select name="categoryId">
+        <option th:each="category : ${categories}" th:value="${category.no_categorie}" th:text="${category.libelle}" th:selected="${category.no_categorie == article.noCategorie}"></option>
+    </select>
+
+
+    <button class="submit" type="submit">Enregistrer les modifications</button>
+</form>
+</body>
+</html>

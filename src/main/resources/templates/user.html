@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <meta charset="ISO-8859-1">
+    <title>Users</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        th, td {
+
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: #0077A8;
+            color: white;
+
+        }
+
+        td {
+            padding-left: 5px;
+
+        }
+
+
+    </style>
+
+
+</head>
+<header th:replace="~{fragment/nav}"></header>
+<body>
+
+<table>
+    <tr>
+        <th>pseudo</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+        <th>telephone</th>
+        <th>rue</th>
+
+
+    </tr>
+    <tr  th:each="users : ${users}">
+        <td  th:text="${users.pseudo}"></td>
+        <td  th:text="${users.nom}"></td>
+        <td  th:text="${users.prenom}"></td>
+        <td  th:text="${users.email}"></td>
+        <td  th:text="${users.telephone}"></td>
+        <td  th:text="${users.rue}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
